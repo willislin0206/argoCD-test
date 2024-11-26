@@ -1,0 +1,55 @@
+---
+# Argo ApplicationSet: define which git repo to load a namespace's Applications
+# - user can pick if they want to use Plain/Kustomize/Helm to manage their apps
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cat
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/willislin0206/argoCD-test.git
+        revision: HEAD
+        directories:
+          - path: manifests/tw/cluster01/610b/*
+  template:
+    metadata:
+      name: cat-{{path.basename}}
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/willislin0206/argoCD-test.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://10.188.135.135:6443
+        namespace: cat
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+
+
+---
+# Namespace config: Namespace, ResourceQuota, LimitRange, NetworkPolicy
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cat
+  labels:
+    goldilocks.fairwinds.com/enabled: 'true'
+    goldilocks.fairwinds.com/vpa-update-mode: 'off'
+
+
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resourcequota
+  namespace: cat
+spec:
+  hard:
+    limits.cpu: '4'
+    limits.memory: 4Gi
