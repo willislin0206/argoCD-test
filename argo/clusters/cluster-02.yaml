@@ -1,19 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: manage-clusters
+  name: manage-clusters-02
   namespace: argocd
 spec:
   destination:
     namespace: app
-    server: https://10.188.135.135:6443
-   #server: https://kubernetes.default.svc
+    server: https://10.188.159.34:6443
   source:
     repoURL: https://github.com/willislin0206/argoCD-test.git
     targetRevision: HEAD
-    path: argo/tw/cluster01/resources  
+    path: argo/tw/cluster02/resources
   project: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+      
+      
