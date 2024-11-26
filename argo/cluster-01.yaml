@@ -7,10 +7,11 @@ spec:
   destination:
     namespace: app
     server: https://10.188.135.135:6443
+   #server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/willislin0206/argoCD-test.git
     targetRevision: HEAD
-    path: manifest/clusters/c01
+    path: argo/tw/cluster01/resources  
   project: default
   syncPolicy:
     automated:
