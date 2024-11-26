@@ -52,4 +52,4 @@ metadata:
 spec:
   hard:
     limits.cpu: '4'
-    limits.memory: 8Gi
+    limits.memory: 4Gi
