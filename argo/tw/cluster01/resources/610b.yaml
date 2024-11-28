@@ -4,7 +4,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cat
+  name: 610b
 spec:
   generators:
     - git:
@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: cat
+  name: 610b
   labels:
     goldilocks.fairwinds.com/enabled: 'true'
     goldilocks.fairwinds.com/vpa-update-mode: 'off'
@@ -48,7 +48,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: resourcequota
-  namespace: cat
+  namespace: 610b
 spec:
   hard:
     limits.cpu: '4'

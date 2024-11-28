@@ -4,14 +4,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: rd0a
+  name: 610a
 spec:
   generators:
     - git:
         repoURL: https://github.com/willislin0206/argoCD-test.git
         revision: HEAD
         directories:
-          - path: manifests/tw/cluster01/610a/*
+          - path: manifests/tw/cluster01/610a/
   template:
     metadata:
       name: rd0a-{{path.basename}}
@@ -25,7 +25,7 @@ spec:
         path: '{{path}}'
       destination:
         server: https://10.188.135.135:6443
-        namespace: rd0a
+        namespace: 610a
       syncPolicy:
         automated:
           prune: true
@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: rd0a
+  name: 610a
   labels:
     goldilocks.fairwinds.com/enabled: 'true'
     goldilocks.fairwinds.com/vpa-update-mode: 'off'
@@ -48,7 +48,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: resourcequota
-  namespace: rd0a
+  namespace: 610a
 spec:
   hard:
     limits.cpu: '4'

@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: app
+    namespace: default
     server: https://10.188.159.34:6443
   source:
     repoURL: https://github.com/willislin0206/argoCD-test.git

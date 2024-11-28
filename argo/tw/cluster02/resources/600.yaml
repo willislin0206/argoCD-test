@@ -4,7 +4,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: rd600
+  name: 600
 spec:
   generators:
     - git:
@@ -14,7 +14,7 @@ spec:
           - path: manifests/tw/cluster02/*
   template:
     metadata:
-      name: rd600-{{path.basename}}
+      name: rd00-{{path.basename}}
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
@@ -25,7 +25,7 @@ spec:
         path: '{{path}}'
       destination:
         server: https://10.188.135.135:6443
-        namespace: rd600
+        namespace: 600
       syncPolicy:
         automated:
           prune: true
@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: rd600
+  name: 600
   labels:
     goldilocks.fairwinds.com/enabled: 'true'
     goldilocks.fairwinds.com/vpa-update-mode: 'off'
@@ -48,7 +48,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: resourcequota
-  namespace: rd600
+  namespace: 600
 spec:
   hard:
     limits.cpu: '4'
