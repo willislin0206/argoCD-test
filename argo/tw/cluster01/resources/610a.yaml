@@ -22,7 +22,7 @@ spec:
       source:
         repoURL: https://github.com/willislin0206/argoCD-test.git
         targetRevision: HEAD
-        path: '{{path}}'
+        path: manifests/tw/cluster01/610a/
       destination:
         server: https://10.188.135.135:6443
         namespace: 610a
